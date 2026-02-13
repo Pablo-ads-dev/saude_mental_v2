@@ -10,6 +10,7 @@ import ChatBot from "@/components/ChatBot";
 import ProblemsSection from "@/components/landing/ProblemsSection";
 import HabitsCarousel from "@/components/landing/HabitsCarousel";
 import QuizSection from "@/components/landing/QuizSection";
+import NewsletterSection from "@/components/landing/NewsletterSection";
 
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -216,6 +217,9 @@ const Index = () => {
       <div id="quiz">
         <QuizSection />
       </div>
+
+      {/* Newsletter */}
+      <NewsletterSection />
 
       {/* Footer */}
       <footer className="bg-card border-t border-border py-16">
