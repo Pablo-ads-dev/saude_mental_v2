@@ -1,10 +1,12 @@
 import { useState, useRef } from "react";
 import {
-  Sparkles, Brain, Heart, Moon, Droplets, Coffee, Pause,
-  Activity, Smile, MessageCircle, ChevronLeft, ChevronRight,
+  Sparkles, Brain, Heart, Moon, Droplets, Pause,
+  Activity, Smile, ChevronLeft, ChevronRight,
   Menu, X, Users, ArrowRight, Play, Clock, Leaf, Wind, Sun
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "@/components/ThemeToggle";
+import ChatBot from "@/components/ChatBot";
 
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -44,6 +46,7 @@ const Index = () => {
           </nav>
 
           <div className="hidden md:flex items-center gap-3">
+            <ThemeToggle />
             <Button variant="ghost" size="sm">Entrar</Button>
             <Button size="sm" className="shadow-lg shadow-primary/25">Começar Agora</Button>
           </div>
@@ -129,7 +132,7 @@ const Index = () => {
       </section>
 
       {/* Por que focar na Saúde Mental */}
-      <section id="saude-mental" className="py-20 bg-accent/30">
+      <section id="saude-mental" className="py-20 bg-lavender">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">Por que focar na <span className="text-primary">Saúde Mental</span>?</h2>
@@ -193,7 +196,7 @@ const Index = () => {
       </section>
 
       {/* Benefícios */}
-      <section id="beneficios" className="py-20 bg-accent/30">
+      <section id="beneficios" className="py-20 bg-lavender">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">Benefícios do <span className="text-primary">Exercício Mental</span></h2>
@@ -279,10 +282,8 @@ const Index = () => {
         </div>
       </footer>
 
-      {/* Chat Flutuante */}
-      <button className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 flex items-center justify-center hover:scale-110 transition-transform z-50">
-        <MessageCircle className="w-6 h-6" />
-      </button>
+      {/* ChatBot */}
+      <ChatBot />
     </div>
   );
 };
