@@ -99,7 +99,7 @@ const Index = () => {
               </div>
               <div className="flex items-center gap-3 text-sm text-muted-foreground">
                 <div className="flex -space-x-2">
-                  {[0,1,2,3].map(i => (
+                  {[0, 1, 2, 3].map(i => (
                     <div key={i} className="w-8 h-8 rounded-full bg-primary/20 border-2 border-background flex items-center justify-center">
                       <Users className="w-3.5 h-3.5 text-primary" />
                     </div>
@@ -160,8 +160,15 @@ const Index = () => {
       {/* Hábitos */}
       <HabitsCarousel />
 
-      {/* Benefícios */}
-      <section id="beneficios" className="py-20 bg-lavender">
+      {/* Quiz */}
+      <div id="quiz">
+        <QuizSection />
+      </div>
+
+
+
+      {/* Benefícios
+      <section id="beneficios" className="py-20 ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">Benefícios do <span className="text-primary">Exercício Mental</span></h2>
@@ -182,7 +189,7 @@ const Index = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Exercícios Mentais Guiados */}
       <section id="praticas" className="py-20">
@@ -213,10 +220,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Quiz */}
-      <div id="quiz">
-        <QuizSection />
-      </div>
 
       {/* Newsletter */}
       <NewsletterSection />
