@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ClipboardCheck, Lock, ArrowRight, CheckCircle2 } from "lucide-react";
+import { ClipboardCheck, UserPlus, ArrowRight, CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const questions = [
@@ -44,7 +44,7 @@ const QuizSection = () => {
   };
 
   return (
-    <section className="py-20 bg-lavender">
+    <section className="py-12 bg-lavender">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-1.5 text-sm font-medium text-primary mb-4">
@@ -120,14 +120,14 @@ const QuizSection = () => {
             </Button>
           ) : (
             <div className="bg-card rounded-2xl p-8 border border-primary/30 shadow-lg max-w-md mx-auto">
-              <Lock className="w-10 h-10 text-primary mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">Crie sua conta gratuita</h3>
+              <UserPlus className="w-10 h-10 text-primary mx-auto mb-4" />
+              <h3 className="text-xl font-bold mb-2">Para ver os resultados, registre-se</h3>
               <p className="text-muted-foreground text-sm mb-6">
-                Para ver seu resultado e acompanhar sua evolução ao longo do tempo, faça login ou crie uma conta.
+                Crie sua conta gratuita para acessar sua avaliação completa e acompanhar seu progresso ao longo do tempo.
               </p>
               <div className="flex flex-col gap-3">
                 <Button size="lg" className="w-full" onClick={() => navigate("/auth")}>
-                  Criar Conta / Entrar <ArrowRight className="w-5 h-5 ml-1" />
+                  Registrar-se gratuitamente <ArrowRight className="w-5 h-5 ml-1" />
                 </Button>
               </div>
             </div>
