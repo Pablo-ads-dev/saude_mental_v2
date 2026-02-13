@@ -68,14 +68,16 @@ const HabitsCarousel = () => {
             </Button>
           </div>
         </div>
-        <div ref={carouselRef} className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4" style={{ scrollbarWidth: "none" }}>
+        <div ref={carouselRef} className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-6 px-1" style={{ scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" }}>
           {habits.map((item, i) => (
-            <div key={i} className="min-w-[280px] sm:min-w-[300px] snap-start group cursor-pointer" onClick={() => setSelectedHabit(i)}>
-              <div className={`rounded-2xl bg-gradient-to-br ${item.color} p-8 text-primary-foreground h-full flex flex-col justify-between min-h-[220px] hover:scale-[1.02] transition-transform duration-300`}>
-                <item.icon className="w-10 h-10 mb-4 opacity-90" />
-                <div>
+            <div key={i} className="min-w-[260px] sm:min-w-[280px] flex-shrink-0 snap-center group cursor-pointer" onClick={() => setSelectedHabit(i)}>
+              <div className={`rounded-2xl bg-gradient-to-br ${item.color} p-7 text-primary-foreground h-full flex flex-col gap-6 min-h-[240px] shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300`}>
+                <div className="w-12 h-12 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center">
+                  <item.icon className="w-6 h-6" />
+                </div>
+                <div className="mt-auto">
                   <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                  <p className="text-sm opacity-90 leading-relaxed">{item.desc}</p>
+                  <p className="text-sm opacity-85 leading-relaxed">{item.desc}</p>
                 </div>
               </div>
             </div>
