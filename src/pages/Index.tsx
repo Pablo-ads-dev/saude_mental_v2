@@ -1,28 +1,25 @@
-import { useState, useRef } from "react";
 import {
-  Sparkles, Brain, Heart, Moon, Droplets, Pause,
-  Activity, Smile, ChevronLeft, ChevronRight,
+  Sparkles, Brain, Heart, Moon,
+  Activity, Smile,
   Menu, X, Users, ArrowRight, Play, Clock, Leaf, Wind, Sun
 } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
 import ChatBot from "@/components/ChatBot";
+import ProblemsSection from "@/components/landing/ProblemsSection";
+import HabitsCarousel from "@/components/landing/HabitsCarousel";
+import QuizSection from "@/components/landing/QuizSection";
 
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const habitCarouselRef = useRef<HTMLDivElement>(null);
-
-  const scrollCarousel = (dir: "left" | "right") => {
-    if (!habitCarouselRef.current) return;
-    const amount = 320;
-    habitCarouselRef.current.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
-  };
 
   const navLinks = [
     { label: "Saúde Mental", href: "#saude-mental" },
     { label: "Hábitos", href: "#habitos" },
     { label: "Benefícios", href: "#beneficios" },
     { label: "Práticas", href: "#praticas" },
+    { label: "Quiz", href: "#quiz" },
   ];
 
   return (
@@ -156,44 +153,11 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Problemas de saúde mental */}
+      <ProblemsSection />
+
       {/* Hábitos */}
-      <section id="habitos" className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-10">
-            <div>
-              <h2 className="text-3xl sm:text-4xl font-bold mb-3">Hábitos para sua <span className="text-primary">Mente</span></h2>
-              <p className="text-muted-foreground">Pequenas mudanças diárias que transformam sua saúde mental.</p>
-            </div>
-            <div className="hidden sm:flex gap-2">
-              <Button variant="outline" size="icon" className="rounded-full" onClick={() => scrollCarousel("left")}>
-                <ChevronLeft className="w-5 h-5" />
-              </Button>
-              <Button variant="outline" size="icon" className="rounded-full" onClick={() => scrollCarousel("right")}>
-                <ChevronRight className="w-5 h-5" />
-              </Button>
-            </div>
-          </div>
-          <div ref={habitCarouselRef} className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4" style={{ scrollbarWidth: "none" }}>
-            {[
-              { icon: Moon, title: "Sono Profundo", desc: "Durma 7-9 horas por noite para restaurar mente e corpo.", color: "from-primary/80 to-primary/40" },
-              { icon: Droplets, title: "Hidratação", desc: "Beba ao menos 2 litros de água por dia para manter o cérebro ativo.", color: "from-primary/60 to-accent" },
-              { icon: Pause, title: "Pausas Ativas", desc: "Faça intervalos regulares de 5 min a cada hora de trabalho.", color: "from-primary/70 to-primary/30" },
-              { icon: Leaf, title: "Contato com a Natureza", desc: "Passe ao menos 20 minutos ao ar livre diariamente.", color: "from-primary/50 to-accent" },
-              { icon: Wind, title: "Respiração Consciente", desc: "Pratique exercícios respiratórios para reduzir a ansiedade.", color: "from-primary/80 to-primary/50" },
-            ].map((item, i) => (
-              <div key={i} className="min-w-[280px] sm:min-w-[300px] snap-start group">
-                <div className={`rounded-2xl bg-gradient-to-br ${item.color} p-8 text-primary-foreground h-full flex flex-col justify-between min-h-[220px] hover:scale-[1.02] transition-transform duration-300`}>
-                  <item.icon className="w-10 h-10 mb-4 opacity-90" />
-                  <div>
-                    <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                    <p className="text-sm opacity-90 leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <HabitsCarousel />
 
       {/* Benefícios */}
       <section id="beneficios" className="py-20 bg-lavender">
@@ -247,6 +211,11 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Quiz */}
+      <div id="quiz">
+        <QuizSection />
+      </div>
 
       {/* Footer */}
       <footer className="bg-card border-t border-border py-16">
