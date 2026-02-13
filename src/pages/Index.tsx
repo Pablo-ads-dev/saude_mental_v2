@@ -32,7 +32,7 @@ const Index = () => {
             <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-primary-foreground" />
             </div>
-            <span className="text-xl font-bold text-foreground">MenteSã</span>
+            <span className="text-xl font-bold text-foreground">Aura Mental</span>
           </a>
 
           <nav className="hidden md:flex items-center gap-8">
@@ -233,7 +233,7 @@ const Index = () => {
                 <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center">
                   <Sparkles className="w-5 h-5 text-primary-foreground" />
                 </div>
-                <span className="text-xl font-bold">MenteSã</span>
+                <span className="text-xl font-bold">Aura Mental</span>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">Cuidando da sua saúde mental com ciência, empatia e tecnologia.</p>
             </div>
@@ -253,7 +253,7 @@ const Index = () => {
             ))}
           </div>
           <div className="border-t border-border mt-12 pt-8 text-center text-sm text-muted-foreground">
-            © {new Date().getFullYear()} MenteSã. Todos os direitos reservados.
+            © {new Date().getFullYear()} Aura Mental. Todos os direitos reservados.
           </div>
         </div>
       </footer>
