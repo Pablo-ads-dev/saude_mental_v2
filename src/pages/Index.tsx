@@ -18,7 +18,6 @@ const Index = () => {
   const navLinks = [
     { label: "Saúde Mental", href: "#saude-mental" },
     { label: "Hábitos", href: "#habitos" },
-    { label: "Benefícios", href: "#beneficios" },
     { label: "Práticas", href: "#praticas" },
     { label: "Quiz", href: "#quiz" },
   ];
