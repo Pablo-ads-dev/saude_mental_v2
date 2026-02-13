@@ -1,8 +1,13 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Moon, Droplets, Pause, Leaf, Wind } from "lucide-react";
-import { useState, useRef } from "react";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
 
 const habits = [
   {
@@ -44,45 +49,36 @@ const habits = [
 
 const HabitsCarousel = () => {
   const [selectedHabit, setSelectedHabit] = useState<number | null>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
-
-  const scrollCarousel = (dir: "left" | "right") => {
-    if (!carouselRef.current) return;
-    carouselRef.current.scrollBy({ left: dir === "left" ? -320 : 320, behavior: "smooth" });
-  };
 
   return (
     <section id="habitos" className="py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between mb-10">
-          <div>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-3">Hábitos para sua <span className="text-primary">Mente</span></h2>
-            <p className="text-muted-foreground">Pequenas mudanças diárias que transformam sua saúde mental. <span className="text-primary text-sm font-medium">Clique para saber mais →</span></p>
-          </div>
-          <div className="hidden sm:flex gap-2">
-            <Button variant="outline" size="icon" className="rounded-full" onClick={() => scrollCarousel("left")}>
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
-            <Button variant="outline" size="icon" className="rounded-full" onClick={() => scrollCarousel("right")}>
-              <ChevronRight className="w-5 h-5" />
-            </Button>
-          </div>
+        <div className="mb-10">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-3">Hábitos para sua <span className="text-primary">Mente</span></h2>
+          <p className="text-muted-foreground">Pequenas mudanças diárias que transformam sua saúde mental. <span className="text-primary text-sm font-medium">Clique para saber mais →</span></p>
         </div>
-        <div ref={carouselRef} className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-6 px-1" style={{ scrollbarWidth: "none", msOverflowStyle: "none", WebkitOverflowScrolling: "touch" }}>
-          {habits.map((item, i) => (
-            <div key={i} className="min-w-[260px] sm:min-w-[280px] flex-shrink-0 snap-center group cursor-pointer" onClick={() => setSelectedHabit(i)}>
-              <div className={`rounded-2xl bg-gradient-to-br ${item.color} p-7 text-primary-foreground h-full flex flex-col gap-6 min-h-[240px] shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300`}>
-                <div className="w-12 h-12 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center">
-                  <item.icon className="w-6 h-6" />
+
+        <Carousel opts={{ align: "start", loop: true }} className="w-full">
+          <CarouselContent className="-ml-4">
+            {habits.map((item, i) => (
+              <CarouselItem key={i} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
+                <div className="cursor-pointer h-full" onClick={() => setSelectedHabit(i)}>
+                  <div className={`rounded-2xl bg-gradient-to-br ${item.color} p-7 text-primary-foreground h-full flex flex-col gap-6 min-h-[250px] shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300`}>
+                    <div className="w-12 h-12 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center">
+                      <item.icon className="w-6 h-6" />
+                    </div>
+                    <div className="mt-auto">
+                      <h3 className="text-lg font-bold mb-2">{item.title}</h3>
+                      <p className="text-sm opacity-85 leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="mt-auto">
-                  <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                  <p className="text-sm opacity-85 leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="-left-4 sm:-left-6" />
+          <CarouselNext className="-right-4 sm:-right-6" />
+        </Carousel>
       </div>
 
       <Dialog open={selectedHabit !== null} onOpenChange={() => setSelectedHabit(null)}>
