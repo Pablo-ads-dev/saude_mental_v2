@@ -4,12 +4,17 @@ import { supabase } from "@/integrations/supabase/client";
 import { ArrowLeft, Mail, Lock, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { error } from "console";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [mocado, setmocado] = useState({
+    email: "pabloadsdev@gmail.com",
+    password: "123456"
+  })
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -19,10 +24,16 @@ const Auth = () => {
 
     try {
       if (isLogin) {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) throw error;
-        toast({ title: "Bem-vindo(a) de volta!", description: "Login realizado com sucesso." });
-        navigate("/");
+        if (email === mocado.email && password === mocado.password) {
+          toast({ title: "Bem-vindo(a) de volta!", description: "Login realizado com sucesso." });
+          navigate("/");
+        } else {
+          toast({
+            title: "Erro",
+            description: "Algo deu errado. Tente novamente.",
+            variant: "destructive",
+          });
+        }
       } else {
         const { error } = await supabase.auth.signUp({
           email,

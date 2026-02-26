@@ -11,6 +11,7 @@ import ProblemsSection from "@/components/landing/ProblemsSection";
 import HabitsCarousel from "@/components/landing/HabitsCarousel";
 import QuizSection from "@/components/landing/QuizSection";
 import NewsletterSection from "@/components/landing/NewsletterSection";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -44,7 +45,7 @@ const Index = () => {
 
           <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
-            <Button variant="ghost" size="sm">Entrar</Button>
+            <Button variant="ghost" size="sm"> <Link to={"/auth"}>Entrar</Link></Button>
             <Button size="sm" className="shadow-lg shadow-primary/25">Começar Agora</Button>
           </div>
 
