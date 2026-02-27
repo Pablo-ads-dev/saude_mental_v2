@@ -7,14 +7,16 @@ import { useToast } from "@/hooks/use-toast";
 import { error } from "console";
 
 const Auth = () => {
+  type User = {
+    email?: string,
+    password?: string
+  }
+
   const [isLogin, setIsLogin] = useState(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [mocado, setmocado] = useState({
-    email: "pabloadsdev@gmail.com",
-    password: "123456"
-  })
+
+  const [user, setUser] = useState<User>();
+  const [users, setUsers] = useState<User[]>([]);
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -24,9 +26,12 @@ const Auth = () => {
 
     try {
       if (isLogin) {
-        if (email === mocado.email && password === mocado.password) {
+        let login = users.find(
+          u => u.email == user?.email && u.password === user?.password
+        )
+        if (login) {
           toast({ title: "Bem-vindo(a) de volta!", description: "Login realizado com sucesso." });
-          navigate("/");
+          navigate("/dash");
         } else {
           toast({
             title: "Erro",
@@ -35,16 +40,19 @@ const Auth = () => {
           });
         }
       } else {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: { emailRedirectTo: window.location.origin },
-        });
-        if (error) throw error;
-        toast({
-          title: "Conta criada!",
-          description: "Verifique seu e-mail para confirmar sua conta.",
-        });
+        if (user?.email && user?.password) {
+          setUsers([...users, user])
+          toast({
+            title: "Conta criada!",
+            description: "Já é possivel acessar a plataforma.",
+          });
+        } else {
+          toast({
+            title: "Atenção!",
+            description: "Não foi possivel criar a conta, verifique os dados.",
+            variant: "destructive"
+          });
+        }
       }
     } catch (error: any) {
       toast({
@@ -93,8 +101,9 @@ const Auth = () => {
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
                   type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onBlur={(e) => setUser({
+                    ...user, email: e.target.value
+                  })}
                   placeholder="seu@email.com"
                   required
                   className="w-full bg-secondary rounded-lg pl-10 pr-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-primary/50 placeholder:text-muted-foreground"
@@ -107,8 +116,9 @@ const Auth = () => {
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
                   type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onBlur={(e) => setUser({
+                    ...user, password: e.target.value
+                  })}
                   placeholder="••••••••"
                   required
                   minLength={6}
