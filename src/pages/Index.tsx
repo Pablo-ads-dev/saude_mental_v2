@@ -46,7 +46,7 @@ const Index = () => {
           <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
             <Button variant="ghost" size="sm"> <Link to={"/auth"}>Entrar</Link></Button>
-            <Button size="sm" className="shadow-lg shadow-primary/25">Começar Agora</Button>
+            <Button size="sm" className="shadow-lg shadow-primary/25"><Link to={"/auth"}>Começar Agora</Link></Button>
           </div>
 
           <button className="md:hidden text-foreground" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -78,9 +78,6 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 bg-secondary rounded-full px-4 py-1.5 text-sm font-medium text-secondary-foreground">
-                <Sparkles className="w-4 h-4" /> Plataforma de Bem-Estar
-              </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
                 Sua jornada para o{" "}
                 <span className="text-primary">bem-estar</span>{" "}
@@ -91,7 +88,7 @@ const Index = () => {
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button size="lg" className="shadow-lg shadow-primary/25 text-base px-8">
-                  Começar Agora <ArrowRight className="w-5 h-5 ml-1" />
+                   <Link to={"/auth"}>Começar Agora</Link> <ArrowRight className="w-5 h-5 ml-1" />
                 </Button>
                 <Button size="lg" variant="outline" className="text-base px-8">
                   <Play className="w-5 h-5 mr-1" /> Ver como funciona
@@ -165,32 +162,6 @@ const Index = () => {
         <QuizSection />
       </div>
 
-
-
-      {/* Benefícios
-      <section id="beneficios" className="py-20 ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">Benefícios do <span className="text-primary">Exercício Mental</span></h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">Exercitar a mente traz benefícios comprovados pela ciência.</p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            {[
-              { icon: Activity, title: "Redução do Estresse", desc: "Práticas regulares reduzem em até 40% os níveis de cortisol, promovendo calma e equilíbrio no seu dia a dia." },
-              { icon: Smile, title: "Dose de Felicidade", desc: "Exercícios mentais estimulam a liberação de endorfina e serotonina, aumentando a sensação de bem-estar." },
-            ].map((item, i) => (
-              <div key={i} className="group bg-card rounded-2xl p-10 border border-border hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300">
-                <div className="w-16 h-16 rounded-2xl bg-secondary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <item.icon className="w-8 h-8 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
-                <p className="text-muted-foreground leading-relaxed text-lg">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
       {/* Exercícios Mentais Guiados */}
       <section id="praticas" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -212,7 +183,7 @@ const Index = () => {
                 <h3 className="text-xl font-bold mb-2">{item.title}</h3>
                 <p className="text-sm opacity-90 leading-relaxed mb-4">{item.desc}</p>
                 <Button size="sm" variant="secondary" className="w-fit bg-background/20 backdrop-blur-sm border-0 text-primary-foreground hover:bg-background/30">
-                  Começar agora <ArrowRight className="w-4 h-4 ml-1" />
+                  <Link to={"/auth"}>Começar Agora</Link> <ArrowRight className="w-4 h-4 ml-1" />
                 </Button>
               </div>
             ))}
